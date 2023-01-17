@@ -54,6 +54,16 @@ public class Controller extends HttpServlet {
 				
 				view = "user/insert-result";
 				break;
+			case "/user-detail.do":		//user-list로 돌아가기 추가
+				view = "user/detail";
+				break;
+			case "/user-modify.do":
+				view = "user/modify";
+				break;
+			case "/user-delete.do":
+				view = "user/delete";
+				break;
+				
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(view + ".jsp");

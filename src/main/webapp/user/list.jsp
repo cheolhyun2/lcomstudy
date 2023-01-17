@@ -33,11 +33,11 @@
 			<th>ID</th>
 			<th>이름</th>
 		</tr>
-		<c:forEach items="${list}" var="item">
+		<c:forEach items="${list}" var="user">
 			<tr>
-				<td>${item.u_idx}</td>
-				<td>${item.u_id}</td>
-				<td>${item.u_name}</td>
+				<td><a href="/lcomstudy/user-detail.do">${user.u_idx}</a></td>
+				<td>${user.u_id}</td>
+				<td>${user.u_name}</td>
 			</tr>
 		</c:forEach>	
 	</table>

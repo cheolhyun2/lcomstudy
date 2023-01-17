@@ -47,7 +47,7 @@ public class UserDAO {
 				list.add(user);
 			}
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
@@ -86,5 +86,40 @@ public class UserDAO {
 			}
 		}
 	}
+	
+	public void detailUser(User user) {	// 01-17
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			String query = "select * from user where u_idx=?";
+			pstmt = conn.prepareStatement(query);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){     
+		   	       String u_idx = rs.getString("u_idx");
+		           String u_id = rs.getString("u_id");
+		           String u_name = rs.getString("u_name");
+		           String u_tel = rs.getString("u_tel");
+		           String u_age = rs.getString("u_age");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+				
+		}
+		
+	
 
 }
