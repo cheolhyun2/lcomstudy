@@ -30,7 +30,11 @@ public class UserService {
 		dao.insertUser(user);
 	}
 	
-	public void detailUser(User user) {		//01-17
-		
+//	public void detailUser(User user) {		//01-17
+//		
+//	}
+
+	public User detailUser(User user) {		//01-18
+		return dao.detailUser(user);
 	}
 }

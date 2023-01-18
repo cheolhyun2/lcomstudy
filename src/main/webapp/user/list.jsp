@@ -35,7 +35,7 @@
 		</tr>
 		<c:forEach items="${list}" var="user">
 			<tr>
-				<td><a href="/lcomstudy/user-detail.do">${user.u_idx}</a></td>
+				<td><a href="/lcomstudy/user-detail.do?u_idx=${user.u_idx}">${user.u_idx}</a></td>
 				<td>${user.u_id}</td>
 				<td>${user.u_name}</td>
 			</tr>

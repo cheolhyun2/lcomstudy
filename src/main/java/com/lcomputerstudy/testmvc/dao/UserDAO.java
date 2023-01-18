@@ -87,7 +87,7 @@ public class UserDAO {
 		}
 	}
 	
-	public void detailUser(User user) {	// 01-17
+/*	public void detailUser(User user) {	// 2023-01-17
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -115,10 +115,48 @@ public class UserDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}				
+	} */
+
+	public User detailUser(User user) {		// 2023-01-18
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		User resultUser = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			String query = "select * from user where u_idx=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, user.getU_idx());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				resultUser = new User();
+				resultUser.setU_idx(Integer.parseInt(rs.getString("u_idx")));
+				resultUser.setU_id(rs.getString("u_id"));
+				resultUser.setU_name(rs.getString("u_name"));
+				resultUser.setU_tel(rs.getString("u_tel"));
+				resultUser.setU_age(rs.getString("u_age"));
+		   	       /*String u_idx = rs.getString("u_idx");
+		           String u_id = rs.getString("u_id");
+		           String u_name = rs.getString("u_name");
+		           String u_tel = rs.getString("u_tel");
+		           String u_age = rs.getString("u_age");*/
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	
-				
-		}
+		return resultUser;
+	}
 		
 	
 

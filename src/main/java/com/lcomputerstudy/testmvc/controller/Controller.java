@@ -22,18 +22,19 @@ public class Controller extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
 		String view = null;
 		
-		response.setContentType("text/html; charset=utf-8");
-		request.setCharacterEncoding("utf-8");
+		UserService userService = null; 
+		User user = null;
 		
 		switch (command) {
 			case "/user-list.do":
-				UserService userService = UserService.getInstance();
+				userService = UserService.getInstance();
 				ArrayList<User> list = userService.getUsers();
 				view = "user/list";
 				request.setAttribute("list", list);
@@ -42,7 +43,7 @@ public class Controller extends HttpServlet {
 				view = "user/insert";
 				break;
 			case "/user-insert-process.do":
-				User user = new User();
+				user = new User();
 				user.setU_id(request.getParameter("id"));
 				user.setU_pw(request.getParameter("password"));
 				user.setU_name(request.getParameter("name"));
@@ -54,8 +55,12 @@ public class Controller extends HttpServlet {
 				
 				view = "user/insert-result";
 				break;
-			case "/user-detail.do":		//user-list로 돌아가기 추가
-				view = "user/detail";
+			case "/user-detail.do":		// 2023-01-18
+				user = new User();
+				user.setU_idx(Integer.parseInt(request.getParameter("u_idx")));
+				userService = UserService.getInstance();
+				user = userService.detailUser(user);
+				request.setAttribute("user", user);
 				break;
 			case "/user-modify.do":
 				view = "user/modify";

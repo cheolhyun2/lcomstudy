@@ -33,23 +33,23 @@
 	<table>
 	<tr>
 		<td>회원 번호</td>
-		<td>${u_idx }</td>
+		<td>${user.u_idx }</td>
 	</tr>
 		<tr>
 		<td>회원 ID</td>
-		<td>${u_id }</td>
+		<td>${user.u_id }</td>
 	</tr>
 		<tr>
 		<td>회원 이름</td>
-		<td>${u_name }</td>
+		<td>${user.u_name }</td>
 	</tr>
 		<tr>
 		<td>회원 전화번호</td>
-		<td>${u_tel }</td>
+		<td>${user.u_tel }</td>
 	</tr>
 		<tr>
 		<td>회원 나이</td>
-		<td>${u_age }</td>
+		<td>${user.u_age }</td>
 	</tr>
 	<tr style="height:50px;">
 			<td style="border:none;">
